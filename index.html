@@ -14,11 +14,48 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	</head>
 	<body>
-		<p id="attempt"></p>
-		<p id="currentPending"></p>
-		<script type="text/javascript" src="assets/javascript/game.js"></script>
+		<audio src="assets/BGM.mp3" loop hidden="true" autoplay>
+		</audio>
+		<div> <!-- Header -->
+			<div class = "container">
+				<div class = "row">
+					<div class = "col-xs-12 phead testBorder">
+						<h1 class = "text-center headertext">Dota 2 Hangman</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div> <!-- Body -->
+			<div class="container">
+				<div class = "row">
+					<img id = "portrait" src="assets/images/placehold.gif" class=" col-xs-offset-1 col-xs-10 img-responsive center-block img-circle iconImg">
+				</div>
+				<div class = "row">
+					<div class = "col-xs-12">
+						<div class = "row">
+							<p id = "attempt" class = "text-center gamebody"></p>
+							<p id = "guesses" class = "text-center gamebody"></p>
+							<p id = "currentPending" class = "text-center gamebody"></p>
+							<p id = "counter" class = "text-center gamebody"></p>
+						</div>
+					</div>
+				</div>
+				<div class = "row">
+					<button id = "playbutton" class="btn btn-default center-block" type="submit">Play again!</button>
+				</div>
+				<div class = "row">
+					<p class = "directions text-center col-xs-10 col-xs-offest-1 gamebody directions">Press a letter key to select it! Press enter or spacebar to submit your guess!</p>
+				</div>
+			</div>
+		</div>
+		<footer class = "footer pfoot">
+			<p class = "footertext text-center">&copy; Copyright Kevin Kung 2017</p>
+		</footer>
+		<script type = "text/javascript" src = "assets/javascript/game.js"></script>
 	</body>
 </html>
