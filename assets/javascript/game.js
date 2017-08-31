@@ -20,6 +20,8 @@ var HANGMANJS = {
 	cWordDisplay: [],
 	guessed: [],
 	lives: 0,
+	wins: 0,
+	losses: 0,
 	correct: new Audio("assets/images/correct.mp3"),
 	wrong: new Audio("assets/images/wrong.mp3"),
 	docLivesDisplay: document.getElementById("counter"),
@@ -28,9 +30,11 @@ var HANGMANJS = {
 	docPending: document.getElementById("currentPending"),
 	docHeroIcon: document.getElementById("portrait"),
 	docPlayButton: document.getElementById("playbutton"),
+	docWins: document.getElementById("wins"),
 	initialize: function(){
 		console.log("initialize entered");
-		console.log(this);
+		document.onkeyup = HANGMANJS.pendingDisplay;
+		console.log(HANGMANJS);
 		let temp = HANGMANJS.words;
 		HANGMANJS.chosenWord = HANGMANJS.words[Math.floor((Math.random() * temp.length))];
 		HANGMANJS.cWordDisplay = [];
@@ -82,12 +86,12 @@ var HANGMANJS = {
 				this.updateDisplay(guess, hits);
 				this.guessed.push(guess);
 				this.correct.play();
-				HANGMANJS.docGuesses.innerHTML = "Guessed: " + HANGMANJS.guessed.toString().replace(/,/g,"&nbsp;");
+				this.docGuesses.innerHTML = "Guessed: " + this.guessed.toString().replace(/,/g,"&nbsp;");
 			} else { 
 				console.log("No hits :[");
 				this.wrong.play();
 				this.guessed.push(guess);
-				HANGMANJS.docGuesses.innerHTML = "Guessed: " + HANGMANJS.guessed.toString().replace(/,/g,"&nbsp;");
+				this.docGuesses.innerHTML = "Guessed: " + this.guessed.toString().replace(/,/g,"&nbsp;");
 				this.lives--;
 				if(this.lives > 0){
 					this.docLivesDisplay.innerHTML = "Remaining Lives: " + String(this.lives);
@@ -133,11 +137,15 @@ var HANGMANJS = {
 			blurb.play();
 			this.docLivesDisplay.innerHTML = "You got it!";
 			this.docPlayButton.style.display = 'block';
-			console.log("You won!");
+			this.wins++;
+			this.docWins.innerHTML = "Wins: " + this.wins + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Losses: " + this.losses;
+			document.onkeyup = null;
 		} else {
-			this.docLivesDisplay.innerHTML = "It's a disastah!"; 
+			this.docLivesDisplay.innerHTML = "It's a disastah!";
+			this.losses++;
+			this.docWins.innerHTML = "Wins: " + this.wins + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Losses: " + this.losses;
 			this.docPlayButton.style.display = 'block';
-			console.log("You lost!");
+			document.onkeyup = null;
 		}
 	},
 	letterCheck: function(input){
@@ -155,6 +163,5 @@ var HANGMANJS = {
 };
 
 HANGMANJS.initialize();
-document.onkeyup = HANGMANJS.pendingDisplay;
 HANGMANJS.docPlayButton.addEventListener("click", HANGMANJS.initialize);
 //HANGMANJS.readProperty();
