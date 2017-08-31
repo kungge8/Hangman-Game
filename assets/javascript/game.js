@@ -128,7 +128,7 @@ var HANGMANJS = {
 	},
 	gameOver: function (status){
 		if (status) {
-			this.docHeroIcon.src = "assets/images/" + this.chosenWord.replace(/ /																			g, "_") + "_icon.png";
+			this.docHeroIcon.src = "assets/images/" + this.chosenWord.replace(/ /g, "_") + "_icon.png";
 			let blurb = new Audio("assets/images/blurbs/" + this.chosenWord.replace(/ /g, "_") + "_blurb.mp3");
 			blurb.play();
 			this.docLivesDisplay.innerHTML = "You got it!";
