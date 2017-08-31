@@ -9,7 +9,7 @@ var HANGMANJS = {
 					"Lifestealer", "Luna", "Lina", "Lion", "Lone Druid", "Lycan", "Magnus", "Medusa", "Meepo",
 					"Mirana", "Monkey King", "Morphling", "Naga Siren", "Nature's Prophet", "Necrophos", "Night Stalker",
 					"Nyx Assassin", "Ogre Magi", "Omniknight", "Oracle", "Outworld Devourer", "Phantom Assassin", "Phantom Lancer",
-					"Pheonix", "Puck", "Pudge", "Queen of Pain", "Razor", "Rikimaru", "Rubick", "Sand King", "Shadow Demon",
+					"Phoenix", "Puck", "Pudge", "Queen of Pain", "Razor", "Rikimaru", "Rubick", "Sand King", "Shadow Demon",
 					"Shadow Fiend", "Shadow Shaman", "Silencer", "Skywrath Mage", "Slardar", "Slark",
 					"Sniper", "Mercurial Specter", "Spirit Breaker", "Storm Spirit", "Sven", "Techies",
 					"Templar Assassin", "Terrorblade", "Tidehunter", "Timbersaw", "Tinker", "Tiny",
