@@ -32,14 +32,15 @@ var HANGMANJS = {
 	docPlayButton: document.getElementById("playbutton"),
 	docWins: document.getElementById("wins"),
 	initialize: function(){
+		//Select a word from wordbank, initialize array display to blanks, etc
 		console.log("initialize entered");
 		document.onkeyup = HANGMANJS.pendingDisplay;
 		console.log(HANGMANJS);
 		let temp = HANGMANJS.words;
 		HANGMANJS.chosenWord = HANGMANJS.words[Math.floor((Math.random() * temp.length))];
-		HANGMANJS.cWordDisplay = [];
-		HANGMANJS.guessed = [];
-		for(let i = 0; i < HANGMANJS.chosenWord.length;i++){
+		HANGMANJS.cWordDisplay = []; //empty correct letters display array
+		HANGMANJS.guessed = []; //blank out guessed letters array
+		for(let i = 0; i < HANGMANJS.chosenWord.length;i++){ //initialize correct letters display array
 			if(HANGMANJS.chosenWord[i] === " "){
 				HANGMANJS.cWordDisplay.push(" ");
 			}else if(HANGMANJS.chosenWord[i] === "-"){
@@ -51,6 +52,8 @@ var HANGMANJS = {
 			}
 			// console.log(HANGMANJS.cWordDisplay);
 		}
+
+		//initialize displays
 		HANGMANJS.docPlayButton.style.display = 'none';
 		HANGMANJS.docHeroIcon.src = "assets/images/placehold.gif";
 		HANGMANJS.docAttemptDisplay.innerHTML = HANGMANJS.cWordDisplay.toString().replace(/,/g,"&nbsp;");
@@ -61,6 +64,7 @@ var HANGMANJS = {
 		console.log("initialize ended");
 	},
 	readProperty: function() {
+		//was used for testing
 		console.log("readProperty entered");
 		console.log("Word list: " + this.words);
 		console.log("chosenWord: " + this.chosenWord);
@@ -70,6 +74,7 @@ var HANGMANJS = {
 		console.log("Guessed: " + this.guessed);
 	},
 	checkEntry: function (guess){
+		//processes players selected letter
 		// console.log("checkEntry entered");	
 		guess = guess.toLowerCase();
 		let hits = [];
@@ -77,10 +82,10 @@ var HANGMANJS = {
 		if(this.guessed.indexOf(guess) > -1){
 			console.log("Already guessed!");
 		} else { 
-			for ( let i = 0; i < this.chosenWord.length; i++){
+			for ( let i = 0; i < this.chosenWord.length; i++){ //checking for any hits
 				if (this.chosenWord[i].toLowerCase() === guess) hits.push(i);
 			}
-			if(hits.length > 0){
+			if(hits.length > 0){ //if there are hits, update display with hits and update guessed array, if not update guessed and decrement life
 				// console.log("Got " + hits.length + " hits!");
 				// console.log("checkEntry hits:" + hits);
 				this.updateDisplay(guess, hits);
@@ -121,6 +126,7 @@ var HANGMANJS = {
 		//console.log("updateDisplay: updated: " + this.cWordDisplay);
 	},
 	pendingDisplay: function (event){
+		//updates display with currently selected letter
 		if (event.key === "Enter" || event.key === " "){
 			HANGMANJS.checkEntry(HANGMANJS.docPending.innerHTML);
 		} else {
@@ -131,6 +137,7 @@ var HANGMANJS = {
 		}
 	},
 	gameOver: function (status){
+		//display success/failure and do things
 		if (status) {
 			this.docHeroIcon.src = "assets/images/" + this.chosenWord.replace(/ /g, "_") + "_icon.png";
 			let blurb = new Audio("assets/images/blurbs/" + this.chosenWord.replace(/ /g, "_") + "_blurb.mp3");
@@ -149,6 +156,7 @@ var HANGMANJS = {
 		}
 	},
 	letterCheck: function(input){
+		//used to filter out non alphabet inputs
 		var letters = /^[A-Za-z]+$/;
 		//console.log("letterCheck entered");
    if(input.match(letters) && input.length<2)  
